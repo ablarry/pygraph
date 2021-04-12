@@ -4,6 +4,7 @@ class Vertex:
     :param id: Unique identifier of vertex
     :param attr: Properties of vertex
     """
-    def __init__(self, id, attributes = {}):
+
+    def __init__(self, id, attributes={}):
         self.id = id
         self.attributes = attributes
