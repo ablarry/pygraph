@@ -1,9 +1,9 @@
 import unittest
-import graphs
-from graphs import graph
-from graphs import vertex
-from graphs import edge
-from graphs import models
+import pygraph
+from pygraph import graph
+from pygraph import vertex
+from pygraph import edge
+from pygraph import models
 from graphviz import Graph
 
 class TestGraph(unittest.TestCase):

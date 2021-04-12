@@ -3,9 +3,9 @@ import math
 
 from random import randint
 from random import random
-from graphs import graph
-from graphs import vertex
-from graphs import edge
+from pygraph import graph
+from pygraph import vertex
+from pygraph import edge
 
 # Coordinates 
 COORDINATE_X = "x"
