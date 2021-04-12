@@ -1,6 +1,6 @@
 class Edge:
-    """ 
-    Initializes edge with source and target 
+    """
+    Initializes edge with source and target
     :param source: origin point
     :param target: end pint
     """
