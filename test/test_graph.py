@@ -184,6 +184,14 @@ class TestGraph(unittest.TestCase):
         g = models.geo_simple(100,0.9, True)
         dot = g.create_graphviz('GeoSimple_directed_100')
 
+    def test_create_geo_simple_graphviz_500(self):
+        g = models.geo_simple(500,0.9)
+        dot = g.create_graphviz('GeoSimple_500')
+
+    def test_create_geo_simple_graphviz_directed_500(self):
+        g = models.geo_simple(500,0.9, True)
+        dot = g.create_graphviz('GeoSimple_directed_500')
+
 
     # Tests Barabasi graph
     def test_create_barabasi_graphviz_30(self):
@@ -202,13 +210,13 @@ class TestGraph(unittest.TestCase):
         g = models.barabasi(100,100, True)
         dot = g.create_graphviz('Barabasi_directed_100')
 
-   # def test_create_barabasi_graphviz_500(self):
-   #     g = models.barabasi(500,500)
-   #     dot = g.create_graphviz('Barabasi_500')
+    def test_create_barabasi_graphviz_500(self):
+        g = models.barabasi(500,100)
+        dot = g.create_graphviz('Barabasi_500')
 
-   # def test_create_barabasi_graphviz_directed_500(self):
-   #     g = models.barabasi(500,500, True)
-   #     dot = g.create_graphviz('Barabasi_directed_500')
+    def test_create_barabasi_graphviz_directed_500(self):
+        g = models.barabasi(500,100, True)
+        dot = g.create_graphviz('Barabasi_directed_500')
 
 
 
