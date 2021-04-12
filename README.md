@@ -1,3 +1,6 @@
+![workflow](https://github.com/ablarry/pygraph.git/actions/workflows/python-publish/badge.svg
+)
+
 # pygraph
 pygraph is a library to work with graphs and render with [graphviz](https://graphviz.org/) 
 
