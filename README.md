@@ -63,6 +63,19 @@ Available commands:
 	make test			     Run tests.	
 ```
 
+### Examples
+- Barabási-Albert model
+```python
+g = models.barabasi(30, 30, True)
+g.create_graphviz('Barabasi_directed_30')
+```
+- Gilbert model
+```python
+g = models.gilbert(30, 0.3)
+g.create_graphviz('Gilbert_30')
+```
+There are more examples in [test_graph.py](/test/test_graph.py)
+
 ### References:
 - [Mesh model](https://en.wikipedia.org/wiki/Mesh_generation)
 - [Erdős–Rényi model](https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93R%C3%A9nyi_model)
