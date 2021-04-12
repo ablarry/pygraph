@@ -17,21 +17,21 @@ Creation of random graphs with models:
   In the G(n,p) model, a graph is constructed by connecting labeled nodes randomly. Each edge is included in the graph with probability p, independently from every other edge.
   
 
-  ![Erdős–Rényi 100 nodes](images/png/Erdos_directed_100_Black.png) 
+  ![Erdős–Rényi 30 nodes](images/png/Erdos_directed_100_Black.png) 
 
 - **Gilbert model**
   
   A random graph obtained by starting with a set of n isolated vertices and adding successive edges between them at random.
 
 
-  ![Gilbert 100 nodes](images/png/Gilbert_100.png)
+  ![Gilbert 30 nodes](images/png/Gilbert_30.png)
 
 - **Geographic model**
 
   Create a random graph with simple method geographic.
 
 
-  ![Geographic 100 nodes](images/png/GeoSimple_100_Black.png)
+  ![Geographic 30 nodes](images/png/GeoSimple_30_Black.png)
 
 
 - **Barabási-Albert**
@@ -40,7 +40,7 @@ Creation of random graphs with models:
   New nodes are added to the network one at a time. Each new node is connected to m < m0 existing nodes with a probability that is proportional to the number of links that the existing nodes already have.
 
 
-  ![Barabási-Albert 100 nodes](images/png/Barabasi_directed_100.png)
+  ![Barabási-Albert 30 nodes](images/png/Barabasi_directed_30.png)
 
 - **Dorogovtsev-Mendes**
 
