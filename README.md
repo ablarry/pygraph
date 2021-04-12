@@ -8,6 +8,7 @@ Creation of random graphs with models:
 
   Graph of m*n nodes representing a meshing model.
 
+  ![Mesh 10*10 nodes](/images/png/Mesh_10x10_directed.png)
 
 - **Erdős–Rényi model** 
   
