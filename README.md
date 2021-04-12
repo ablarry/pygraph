@@ -60,7 +60,6 @@ git clone https://github.com/ablarry/pygraph.git
 ```
 Available commands:
 	make install			 Install dependencies.
-	make test			     Run tests.	
 ```
 
 ### Examples
@@ -76,6 +75,11 @@ g.create_graphviz('Gilbert_30')
 ```
 There are more examples in [test_graph.py](/test/test_graph.py)
 
+### Test
+Run test
+```
+python -m unittest test.test_graph.TestGraph -v
+```
 ### References:
 - [Mesh model](https://en.wikipedia.org/wiki/Mesh_generation)
 - [Erdős–Rényi model](https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93R%C3%A9nyi_model)
