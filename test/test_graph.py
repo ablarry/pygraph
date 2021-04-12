@@ -7,7 +7,6 @@ from pygraph import graph
 from pygraph import models
 from pygraph import vertex
 
-
 class TestGraph(unittest.TestCase):
 
     def test_initialize_graph(self):
