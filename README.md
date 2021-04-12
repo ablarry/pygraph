@@ -1,4 +1,4 @@
-![workflow](https://github.com/ablarry/pygraph.git/actions/workflows/python-publish/badge.svg
+![workflow](https://github.com/ablarry/pygraph.git/actions/workflows/python-publish.yaml/badge.svg
 )
 
 # pygraph
