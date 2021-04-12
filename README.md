@@ -1,6 +1,4 @@
-![workflow](https://github.com/ablarry/pygraph.git/actions/workflows/python-publish.yaml/badge.svg
-)
-
+[![Python package](https://github.com/ablarry/pygraph/actions/workflows/python-publish.yml/badge.svg)](https://github.com/ablarry/pygraph/actions/workflows/python-publish.yml)
 # pygraph
 pygraph is a library to work with graphs and render with [graphviz](https://graphviz.org/) 
 
