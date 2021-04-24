@@ -60,6 +60,11 @@ class TestGraph(unittest.TestCase):
         e = edge.Edge(1, 3)
         g.add_edge(e)
         self.assertEqual(2, len(g.get_edges_by_vertex(1)))
+        e = edge.Edge(2, 1)
+        g.add_edge(e, True)
+        self.assertEqual(3, len(g.get_edges_by_vertex(1,0)))
+        self.assertEqual(2, len(g.get_edges_by_vertex(1,1)))
+        self.assertEqual(1, len(g.get_edges_by_vertex(1,2)))
 
     # Tests Mesh graph
     def test_mesh(self):
