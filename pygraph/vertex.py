@@ -9,3 +9,5 @@ class Vertex:
         self.id = id
         if attributes is None:
             self.attributes = {} 
+        else:
+            self.attributes = attributes

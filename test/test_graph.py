@@ -90,10 +90,12 @@ class TestGraph(unittest.TestCase):
         g = models.mesh(10, 10, True)
         dot = g.create_graphviz('Mesh_10x10_directed')
 
+    @unittest.skip
     def test_create_mesh_graphviz_500(self):
         g = models.mesh(100, 5)
         dot = g.create_graphviz('Mesh_100x5')
 
+    @unittest.skip
     def test_create_mesh_directed_graphviz_500(self):
         g = models.mesh(100, 5, True)
         dot = g.create_graphviz('Mesh_100x5_directed')
@@ -116,21 +118,25 @@ class TestGraph(unittest.TestCase):
         self.assertEqual(30, len(g.edges))
         dot = g.create_graphviz('Erdos_directed_30')
 
+    @unittest.skip
     def test_create_erdos_graphviz_100(self):
         g = models.erdos_rengy(100, 100)
         self.assertEqual(100, len(g.edges))
         dot = g.create_graphviz('Erdos_100')
 
+    @unittest.skip
     def test_create_erdos_graphviz_directed_100(self):
         g = models.erdos_rengy(100, 100, True)
         self.assertEqual(100, len(g.edges))
         dot = g.create_graphviz('Erdos_directed_100')
 
+    @unittest.skip
     def test_create_erdos_graphviz_500(self):
         g = models.erdos_rengy(500, 500)
         self.assertEqual(500, len(g.edges))
         dot = g.create_graphviz('Erdos_500')
 
+    @unittest.skip
     def test_create_erdos_graphviz_directed_500(self):
         g = models.erdos_rengy(500, 500, True)
         self.assertEqual(500, len(g.edges))
@@ -149,10 +155,12 @@ class TestGraph(unittest.TestCase):
         g = models.gilbert(30, 0.3)
         dot = g.create_graphviz('Gilbert_30')
 
+    @unittest.skip
     def test_create_gilbert_graphviz_100(self):
         g = models.gilbert(100, 0.3)
         dot = g.create_graphviz('Gilbert_100')
 
+    @unittest.skip
     def test_create_gilbert_graphviz_500(self):
         g = models.gilbert(500, 0.3)
         dot = g.create_graphviz('Gilbert_500')
@@ -177,18 +185,22 @@ class TestGraph(unittest.TestCase):
         g = models.geo_simple(30, 0.9, True)
         dot = g.create_graphviz('GeoSimple_directed_30')
 
+    @unittest.skip
     def test_create_geo_simple_graphviz_100(self):
         g = models.geo_simple(100, 0.9)
         dot = g.create_graphviz('GeoSimple_100')
 
+    @unittest.skip
     def test_create_geo_simple_graphviz_directed_100(self):
         g = models.geo_simple(100, 0.9, True)
         dot = g.create_graphviz('GeoSimple_directed_100')
 
+    @unittest.skip
     def test_create_geo_simple_graphviz_500(self):
         g = models.geo_simple(500, 0.9)
         dot = g.create_graphviz('GeoSimple_500')
 
+    @unittest.skip
     def test_create_geo_simple_graphviz_directed_500(self):
         g = models.geo_simple(500, 0.9, True)
         dot = g.create_graphviz('GeoSimple_directed_500')
@@ -202,18 +214,22 @@ class TestGraph(unittest.TestCase):
         g = models.barabasi(30, 30, True)
         dot = g.create_graphviz('Barabasi_directed_30')
 
+    @unittest.skip
     def test_create_barabasi_graphviz_100(self):
         g = models.barabasi(100, 100)
         dot = g.create_graphviz('Barabasi_100')
 
+    @unittest.skip
     def test_create_barabasi_graphviz_directed_100(self):
         g = models.barabasi(100, 100, True)
         dot = g.create_graphviz('Barabasi_directed_100')
 
+    @unittest.skip
     def test_create_barabasi_graphviz_500(self):
         g = models.barabasi(500, 100)
         dot = g.create_graphviz('Barabasi_500')
 
+    @unittest.skip
     def test_create_barabasi_graphviz_directed_500(self):
         g = models.barabasi(500, 100, True)
         dot = g.create_graphviz('Barabasi_directed_500')
@@ -226,22 +242,27 @@ class TestGraph(unittest.TestCase):
         g = models.dorogovtsev_mendes(30)
         dot = g.create_graphviz('Dorogovtsev_30')
 
+    @unittest.skip
     def test_dorogovtsev_mendes_graphviz_directed_30(self):
         g = models.dorogovtsev_mendes(30, True)
         dot = g.create_graphviz('Dorogovtsev_directed_30')
 
+    @unittest.skip
     def test_dorogovtsev_mendes_graphviz_100(self):
         g = models.dorogovtsev_mendes(100)
         dot = g.create_graphviz('Dorogovtsev_100')
 
+    @unittest.skip
     def test_dorogovtsev_mendes_graphviz_directed_100(self):
         g = models.dorogovtsev_mendes(100, True)
         dot = g.create_graphviz('Dorogovtsev_directed_100')
 
+    @unittest.skip
     def test_dorogovtsev_mendes_graphviz_500(self):
         g = models.dorogovtsev_mendes(500)
         dot = g.create_graphviz('Dorogovtsev_500')
 
+    @unittest.skip
     def test_dorogovtsev_mendes_graphviz_directed_500(self):
         g = models.dorogovtsev_mendes(500, True)
         dot = g.create_graphviz('Dorogovtsev_directed_500')
