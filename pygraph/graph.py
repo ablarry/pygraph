@@ -138,7 +138,7 @@ class Graph:
         q.append(s)
 
         while(len(q) > 0):
-            v = q.pop()
+            v = q.popleft()
             for e in self.get_edges_by_vertex(v, 1):
                 (source, target) = e 
                 w = self.get_vertex(target)

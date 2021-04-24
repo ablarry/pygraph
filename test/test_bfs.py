@@ -46,20 +46,19 @@ class TestBFS(unittest.TestCase):
 	3 [label=3]
 	4 [label=4]
 	5 [label=5]
-	10 [label=10]
-	8 [label=8]
-	7 [label=7]
 	6 [label=6]
+	7 [label=7]
+	8 [label=8]
+	10 [label=10]
 	9 [label=9]
 	1 -> 2
 	1 -> 3
 	1 -> 4
 	1 -> 5
-	5 -> 10
-	4 -> 8
-	3 -> 7
 	2 -> 6
+	2 -> 7
+	3 -> 8
+	5 -> 10
 	6 -> 9
 }'''
-        self.assertEqual(gbase, str(dot))
-
+        self.assertEqual(gbase, str(dot)) 
