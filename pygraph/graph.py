@@ -13,6 +13,7 @@ RENDER = False
 # Attribute to inidcate if a vertes has been discovered
 DISCOVERED = "DISCOVERED"
 
+
 class Graph:
     def __init__(self, vertices=None, edges=None, attr={}):
         """__init__ initializes Graph object. Graph stores vertices and edges
@@ -20,18 +21,19 @@ class Graph:
            param edges:    Dictionary with edges
            param attr:     Properties of graph
         """
-        if vertices == None:
+        if vertices is None:
             vertices = {}
         self.vertices = vertices
 
-        if edges == None:
+        if edges is None:
             edges = {}
         self.edges = edges
 
         self.attr = attr
 
     def add_vertex(self, vertex):
-        """ add_vertex add vertex to graph's vertices if there is not other vertex with same id
+        """ add_vertex add vertex to graph's vertices
+            if there is not other vertex with same id
             param vertex: vertex to add in graph
         """
         if vertex.id not in self.vertices.keys():
@@ -47,7 +49,8 @@ class Graph:
             return None
 
     def add_edge(self, edge, directed=False, auto=False):
-        """ Add edge to source edges if there is no other edge with same source and target
+        """ Add edge to source edges
+            if there is no other edge with same source and target
             :param edge: edge to insert
             :param directed: enable graph directed
             :param auto: allow auto-cycle (loops)
@@ -80,14 +83,14 @@ class Graph:
         """
         Get adjacent vertex of specific vertex
         param id: Vertex identifier in the graph
-        param type: Filter  
-            None - All adjacent vertices 
-            +    - Output adjacent vertices 
-            -    - Input adjacent vertices 
+        param type: Filter
+            None - All adjacent vertices
+            +    - Output adjacent vertices
+            -    - Input adjacent vertices
         """
         vertex = []
         for (source, target) in self.edges.keys():
-            if type == None:
+            if type is None:
                 if source == id:
                     vertex.append(target)
                 elif target == id:
@@ -102,10 +105,10 @@ class Graph:
         return vertex
 
     def get_edges_by_vertex(self, id, type=0):
-        """ 
+        """
         Find the edges that are incident in vertex with id paramater
         param id: Vertex identifier in the graph
-        param type: Filter output edges 
+        param type: Filter output edges
             1 - Output edges
             2 - Input edges
             other - All edges
@@ -114,10 +117,10 @@ class Graph:
         edges = []
         for (source, target) in self.edges.keys():
             if type == 1:
-                if source == id :
+                if source == id:
                     edges.append((source, target))
             elif type == 2:
-                if target == id :
+                if target == id:
                     edges.append((source, target))
             else:
                 if source == id or target == id:
@@ -134,7 +137,7 @@ class Graph:
             else:
                 dot = Graphviz()
 
-        # Map graph to graphviz structure    
+        # Map graph to graphviz structure
         for n in list(self.vertices.keys()):
             dot.node(str(n), str(n))
         for e in self.get_edges():
@@ -145,27 +148,30 @@ class Graph:
         file.close()
         return dot
 
-    def bfs(self,s):
+    def bfs(self, s):
         """
-        bfs Breadth-first search (BFS) is an algorithm for traversing or searching graph data structures. It starts at the s node
-        and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level.
+        bfs Breadth-first search (BFS) is an algorithm
+        for traversing or searching graph data structures.
+        It starts at the s node
+        and explores all of the neighbor nodes at the present
+        depth prior to moving on to the nodes at the next depth level.
         :param s: root node for traversing
-        :return g graph generated according BFS 
+        :return g graph generated according BFS
         """
-        g = Graph(attr={DIRECTED:True})
+        g = Graph(attr={DIRECTED: True})
         root = self.get_vertex(s)
         root.attributes[DISCOVERED] = True
         q = collections.deque()
-        adjacent_type = '+' if DIRECTED in self.attr and self.attr[DIRECTED] == True else None
+        adjacent_type = '+' if DIRECTED in self.attr and self.attr[DIRECTED] else None
         # Insert root node in graph and queue
         g.add_vertex(root)
         q.append(s)
-    
+
         while(len(q) > 0):
             v = q.popleft()
             for e in self.get_adjacent_vertices_by_vertex(v, adjacent_type):
                 w = self.get_vertex(e)
-                if DISCOVERED not in w.attributes or w.attributes[DISCOVERED] == False:
+                if DISCOVERED not in w.attributes or w.attributes[DISCOVERED] is False:
                     w.attributes[DISCOVERED] = True
                     q.append(w.id) 
                     g.add_vertex(w)
@@ -180,7 +186,7 @@ class Graph:
         :return g graph generated according DFS 
         """
         g = Graph(attr={DIRECTED:True})
-        adjacent_type = '+' if DIRECTED in self.attr and self.attr[DIRECTED] == True else None
+        adjacent_type = '+' if DIRECTED in self.attr and self.attr[DIRECTED] else None
         # Insert s root node in stack 
         stack = collections.deque()
         # Initial node does not have origin, it is represented by # 
@@ -189,7 +195,7 @@ class Graph:
         while(len(stack) > 0):
             (source, target) = stack.pop()
             w = self.get_vertex(target)
-            if DISCOVERED not in w.attributes or w.attributes[DISCOVERED] == False:
+            if DISCOVERED not in w.attributes or w.attributes[DISCOVERED] is False:
                 w.attributes[DISCOVERED] = True
                 g.add_vertex(w)
                 if(source != '#'):
@@ -212,10 +218,10 @@ class Graph:
         return self.dfs_rec(g, ('#',s))
         
     def dfs_rec(self, g, s):
-        adjacent_type = '+' if DIRECTED in self.attr and self.attr[DIRECTED] == True else None
+        adjacent_type = '+' if DIRECTED in self.attr and self.attr[DIRECTED] else None
         (source, target) = s
         w = self.get_vertex(target)
-        if DISCOVERED not in w.attributes or w.attributes[DISCOVERED] == False:
+        if DISCOVERED not in w.attributes or w.attributes[DISCOVERED] is False:
             w.attributes[DISCOVERED] = True
             g.add_vertex(w)
             if(source != '#'):

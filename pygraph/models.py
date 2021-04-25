@@ -2,7 +2,6 @@ import math
 import random
 from random import randint
 from random import random
-
 from pygraph import edge
 from pygraph import graph
 from pygraph import vertex
@@ -126,7 +125,6 @@ def geo_simple(n, r, directed=False, auto=False):
 
     # Create n nodes with uniform coordinates 
     for i in range(n):
-        v = vertex.Vertex(i, {COORDINATE_X: random(), COORDINATE_Y: random()})
         g.add_vertex(vertex.Vertex(i, {COORDINATE_X: random(), COORDINATE_Y: random()}))
 
     # Create edge between two vertex if there is a distance <= r

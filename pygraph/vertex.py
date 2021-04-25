@@ -8,6 +8,6 @@ class Vertex:
     def __init__(self, id, attributes=None):
         self.id = id
         if attributes is None:
-            self.attributes = {} 
+            self.attributes = {}
         else:
             self.attributes = attributes
