@@ -76,11 +76,36 @@ class Graph:
             edges.append((key, target))
         return edges
 
+    def get_adjacent_vertices_by_vertex(self, id, type=None):
+        """
+        Get adjacent vertex of specific vertex
+        param id: Vertex identifier in the graph
+        param type: Filter  
+            None - All adjacent vertices 
+            +    - Output adjacent vertices 
+            -    - Input adjacent vertices 
+        """
+        vertex = []
+        for (source, target) in self.edges.keys():
+            if type == None:
+                if source == id:
+                    vertex.append(target)
+                elif target == id:
+                    vertex.append(source)
+            elif type == '+':
+                if source == id:
+                    vertex.append(target)
+            elif type == '-':
+                if target == id:
+                    vertex.append(source)
+
+        return vertex
+
     def get_edges_by_vertex(self, id, type=0):
         """ 
         Find the edges that are incident in vertex with id paramater
         param id: Vertex identifier in the graph
-        param output: Filter output edges 
+        param type: Filter output edges 
             1 - Output edges
             2 - Input edges
             other - All edges
@@ -130,25 +155,22 @@ class Graph:
         g = Graph(attr={DIRECTED:True})
         root = self.get_vertex(s)
         root.attributes[DISCOVERED] = True
-
         q = collections.deque()
-                
+        adjacent_type = '+' if DIRECTED in self.attr and self.attr[DIRECTED] == True else None
         # Insert root node in graph and queue
         g.add_vertex(root)
         q.append(s)
-
+    
         while(len(q) > 0):
             v = q.popleft()
-            for e in self.get_edges_by_vertex(v, 1):
-                (source, target) = e 
-                w = self.get_vertex(target)
+            for e in self.get_adjacent_vertices_by_vertex(v, adjacent_type):
+                w = self.get_vertex(e)
                 if DISCOVERED not in w.attributes or w.attributes[DISCOVERED] == False:
                     w.attributes[DISCOVERED] = True
                     q.append(w.id) 
                     g.add_vertex(w)
-                    g.add_edge(edge.Edge(source, target), True)
+                    g.add_edge(edge.Edge(v,e), True)
         return g 
-
 
     def dfs(self,s):
         """
@@ -158,26 +180,24 @@ class Graph:
         :return g graph generated according DFS 
         """
         g = Graph(attr={DIRECTED:True})
-        root = self.get_vertex(s)
-        g.add_vertex(root)
-
+        adjacent_type = '+' if DIRECTED in self.attr and self.attr[DIRECTED] == True else None
         # Insert s root node in stack 
         stack = collections.deque()
-        stack.append(s)
+        # Initial node does not have origin, it is represented by # 
+        stack.append(('#',s))
 
         while(len(stack) > 0):
-            v = stack.pop()
-            w = self.get_vertex(v)
+            (source, target) = stack.pop()
+            w = self.get_vertex(target)
             if DISCOVERED not in w.attributes or w.attributes[DISCOVERED] == False:
                 w.attributes[DISCOVERED] = True
-                for e in self.get_edges_by_vertex(w.id, 1):
-                    (source, target) = e 
-                    stack.append(target) 
-                    node_target = self.get_vertex(target)
-                    if g.get_vertex(node_target.id) == None:
-                        g.add_vertex(node_target)
-                        g.add_edge(edge.Edge(source, target), True)
+                g.add_vertex(w)
+                if(source != '#'):
+                    g.add_edge(edge.Edge(source,w.id), True)
+                for e in self.get_adjacent_vertices_by_vertex(w.id, adjacent_type):
+                    stack.append((w.id, e)) 
         return g 
+
 
     def dfs_r(self,s):
         """
@@ -189,19 +209,17 @@ class Graph:
         :return g graph generated according DFS 
         """
         g = Graph(attr={DIRECTED:True})
-        root = self.get_vertex(s)
-        g.add_vertex(root)
-        return self.dfs_rec(g, s)
+        return self.dfs_rec(g, ('#',s))
         
     def dfs_rec(self, g, s):
-        v = self.get_vertex(s)
-        v.attributes[DISCOVERED] = True
-        for e in self.get_edges_by_vertex(v.id, 1):
-            (source, target) = e 
-            w = self.get_vertex(target)
-            if g.get_vertex(w.id) == None:
-                g.add_vertex(w)
-                g.add_edge(edge.Edge(source, target), True)
-            if DISCOVERED not in w.attributes or w.attributes[DISCOVERED] == False:
-                self.dfs_rec(g, w.id)
+        adjacent_type = '+' if DIRECTED in self.attr and self.attr[DIRECTED] == True else None
+        (source, target) = s
+        w = self.get_vertex(target)
+        if DISCOVERED not in w.attributes or w.attributes[DISCOVERED] == False:
+            w.attributes[DISCOVERED] = True
+            g.add_vertex(w)
+            if(source != '#'):
+                g.add_edge(edge.Edge(source,w.id), True)
+            for e in self.get_adjacent_vertices_by_vertex(w.id, adjacent_type):
+                self.dfs_rec(g,(w.id,e))
         return g 

@@ -9,5 +9,5 @@ install:
 	@echo "Make: install"
 	pip install -r requirements.txt
 
-test:
-	${PYTHON} -m unittest discover 
+tests:
+	${PYTHON} -m unittest discover  -v

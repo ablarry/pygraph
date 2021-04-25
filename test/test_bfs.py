@@ -61,4 +61,15 @@ class TestBFS(unittest.TestCase):
 	5 -> 10
 	6 -> 9
 }'''
+        #dot.render('bfs',view=True)
         self.assertEqual(gbase, str(dot)) 
+
+
+    def test_bfs_graphviz_30(self):
+        g = models.erdos_rengy(30, 30)
+        dot = g.create_graphviz('bfs_original_30')
+        #dot.render('bfs_original_30',view=True)
+        g2 = g.bfs(0)
+        dot = g2.create_graphviz('bfs_30')
+        #dot.render('bfs_30',view=True)
+
