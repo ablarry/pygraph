@@ -3,7 +3,7 @@ PYTHON = python3
 help:
 	@echo "Commands:"
 	@echo "\tmake install\t Install dependencies."
-	@echo "\tmake test\t Run tests"
+	@echo "\tmake tests\t Run tests"
 	@echo "\tmake linter\t Linter"
 
 install:
