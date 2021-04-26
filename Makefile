@@ -3,11 +3,15 @@ PYTHON = python3
 help:
 	@echo "Commands:"
 	@echo "\tmake install\t Install dependencies."
-	@echo "\tmake test\t Runit tests"
+	@echo "\tmake tests\t Run tests"
+	@echo "\tmake linter\t Linter"
 
 install:
 	@echo "Make: install"
 	pip install -r requirements.txt
 
-test:
-	${PYTHON} -m unittest discover 
+tests:
+	${PYTHON} -m unittest discover  -v
+
+linter:
+	flake8 ./pygraph/ ./test/

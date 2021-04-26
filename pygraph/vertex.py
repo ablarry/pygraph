@@ -5,6 +5,9 @@ class Vertex:
     :param attr: Properties of vertex
     """
 
-    def __init__(self, id, attributes={}):
+    def __init__(self, id, attributes=None):
         self.id = id
-        self.attributes = attributes
+        if attributes is None:
+            self.attributes = {}
+        else:
+            self.attributes = attributes
