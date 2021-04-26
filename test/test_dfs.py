@@ -177,7 +177,7 @@ class TestDFS(unittest.TestCase):
         dot.render('dfs_original_30',view=True)
         g2 = g.dfs(0)
         dot = g2.create_graphviz('dfs_30')
-        dot.render('rfs_30',view=True)
+        dot.render('dfs_30',view=True)
 
 
     @unittest.skip
@@ -187,15 +187,43 @@ class TestDFS(unittest.TestCase):
         dot.render('dfs_original_100',view=True)
         g2 = g.dfs(0)
         dot = g2.create_graphviz('dfs_100')
-        dot.render('rfs_100',view=True)
+        dot.render('dfs_100',view=True)
 
     @unittest.skip
     def test_dfs_graphviz_500(self):
-        g = models.erdos_rengy(500, 750)
+        g = models.erdos_rengy(500, 650)
         dot = g.create_graphviz('dfs_original_500')
         dot.render('dfs_original_500',view=True)
         g2 = g.dfs(0)
         dot = g2.create_graphviz('dfs_500')
-        dot.render('rfs_500',view=True)
+        dot.render('dfs_500',view=True)
+
+    @unittest.skip
+    def test_dfs_r_graphviz_30(self):
+        g = models.erdos_rengy(30, 60)
+        dot = g.create_graphviz('dfs_r_original_30')
+        dot.render('dfs_r_original_30',view=True)
+        g2 = g.dfs_r(0)
+        dot = g2.create_graphviz('dfs_r_30')
+        dot.render('dfs_r_30',view=True)
+
+
+    @unittest.skip
+    def test_dfs_r_graphviz_100(self):
+        g = models.erdos_rengy(100, 250)
+        dot = g.create_graphviz('dfs_r_original_100')
+        dot.render('dfs_r_original_100',view=True)
+        g2 = g.dfs_r(0)
+        dot = g2.create_graphviz('dfs_r_100')
+        dot.render('dfs_r_100',view=True)
+
+    @unittest.skip
+    def test_dfs_r_graphviz_500(self):
+        g = models.erdos_rengy(500, 800)
+        dot = g.create_graphviz('dfs_r_original_500')
+        dot.render('dfs_r_original_500',view=True)
+        g2 = g.dfs_r(0)
+        dot = g2.create_graphviz('dfs_r_500')
+        dot.render('dfs_r_500',view=True)
 
 
