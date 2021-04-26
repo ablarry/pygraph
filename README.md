@@ -79,7 +79,9 @@ git clone https://github.com/ablarry/pygraph.git
 ### Quickstart
 ```
 Available commands:
-	make install			 Install dependencies.
+	make install Install dependencies.
+	make tests   Run tests
+	make linter  Execite linter
 ```
 
 ### Examples
