@@ -9,6 +9,7 @@ from pygraph import vertex
 
 class TestBFS(unittest.TestCase):
 
+    @unittest.skip
     def test_bfs_simple_10(self):
         g = graph.Graph()
         for i in range(1, 11):
@@ -65,11 +66,40 @@ class TestBFS(unittest.TestCase):
         self.assertEqual(gbase, str(dot)) 
 
 
+    @unittest.skip
+    def test_bfs_graphviz_10(self):
+        g = models.erdos_rengy(10, 10)
+        dot = g.create_graphviz('bfs_original_10')
+        dot.render('bfs_original_10',view=True)
+        g2 = g.bfs(0)
+        dot = g2.create_graphviz('bfs_10')
+        dot.render('bfs_10',view=True)
+
+    @unittest.skip
     def test_bfs_graphviz_30(self):
-        g = models.erdos_rengy(30, 30)
+        g = models.erdos_rengy(30, 50)
         dot = g.create_graphviz('bfs_original_30')
-        #dot.render('bfs_original_30',view=True)
+        dot.render('bfs_original_30',view=True)
         g2 = g.bfs(0)
         dot = g2.create_graphviz('bfs_30')
-        #dot.render('bfs_30',view=True)
+        dot.render('bfs_30',view=True)
+
+
+    @unittest.skip
+    def test_bfs_graphviz_100(self):
+        g = models.erdos_rengy(100, 150)
+        dot = g.create_graphviz('bfs_original_100')
+        dot.render('bfs_original_100',view=True)
+        g2 = g.bfs(0)
+        dot = g2.create_graphviz('bfs_100')
+        dot.render('bfs_100',view=True)
+
+    @unittest.skip
+    def test_bfs_graphviz_500(self):
+        g = models.erdos_rengy(500, 950)
+        dot = g.create_graphviz('bfs_original_500')
+        dot.render('bfs_original_500',view=True)
+        g2 = g.bfs(0)
+        dot = g2.create_graphviz('bfs_500')
+        dot.render('bfs_500',view=True)
 

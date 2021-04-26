@@ -9,6 +9,7 @@ from pygraph import vertex
 
 class TestDFS(unittest.TestCase):
 
+    @unittest.skip
     def test_dfs_simple_10(self):
         g = graph.Graph(attr={graph.DIRECTED:True})
         for i in range(1, 11):
@@ -64,6 +65,8 @@ class TestDFS(unittest.TestCase):
         #dot.render('dfs',view=True)
         self.assertEqual(gbase, str(dot))
 
+
+    @unittest.skip
     def test_dfs_simple_8(self):
         g = graph.Graph(attr={graph.DIRECTED:True})
         for i in range(1, 9):
@@ -110,6 +113,7 @@ class TestDFS(unittest.TestCase):
         self.assertEqual(gbase, str(dot))
 
 
+    @unittest.skip
     def test_dfs_r_simple_8(self):
         g = graph.Graph(attr={graph.DIRECTED:True})
         for i in range(1, 9):
@@ -156,4 +160,42 @@ class TestDFS(unittest.TestCase):
     
         #dot.render('dfs_r',view=True)
         self.assertEqual(gbase, str(dot))
+
+    @unittest.skip
+    def test_dfs_graphviz_10(self):
+        g = models.erdos_rengy(10, 10, True)
+        dot = g.create_graphviz('dfs_original_10')
+        dot.render('dfs_original_10',view=True)
+        g2 = g.dfs(0)
+        dot = g2.create_graphviz('dfs_10')
+        dot.render('rfs_10',view=True)
+
+    @unittest.skip
+    def test_dfs_graphviz_30(self):
+        g = models.erdos_rengy(30, 60)
+        dot = g.create_graphviz('dfs_original_30')
+        dot.render('dfs_original_30',view=True)
+        g2 = g.dfs(0)
+        dot = g2.create_graphviz('dfs_30')
+        dot.render('rfs_30',view=True)
+
+
+    @unittest.skip
+    def test_dfs_graphviz_100(self):
+        g = models.erdos_rengy(100, 150)
+        dot = g.create_graphviz('dfs_original_100')
+        dot.render('dfs_original_100',view=True)
+        g2 = g.dfs(0)
+        dot = g2.create_graphviz('dfs_100')
+        dot.render('rfs_100',view=True)
+
+    @unittest.skip
+    def test_dfs_graphviz_500(self):
+        g = models.erdos_rengy(500, 750)
+        dot = g.create_graphviz('dfs_original_500')
+        dot.render('dfs_original_500',view=True)
+        g2 = g.dfs(0)
+        dot = g2.create_graphviz('dfs_500')
+        dot.render('rfs_500',view=True)
+
 
