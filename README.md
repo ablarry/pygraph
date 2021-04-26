@@ -51,6 +51,26 @@ Creation of random graphs with models:
   ![Dorogovtsev Mendes 100 nodes](images/png/Dorogovtsev_directed_100_Black.png)
 
   [View all images model](images/png)
+
+
+### Search graphs algorithms 
+
+- **Breadth-first search (BFS)**
+
+  BFS is an algorithm for traversing or searching tree or graph data structures. It starts at the tree root (or some arbitrary node of a graph, sometimes referred to as a 'search key'), and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level.
+
+
+  ![BFS_100 nodes](images/png/BFS_100.png)
+
+- **DFS Depth-first search (DFS)**
+
+  DFS is an algorithm for traversing or searching tree or graph data structures. The algorithm starts at the root node (selecting some arbitrary node as the root node in the case of a graph) and explores as far as possible along each branch before backtracking.
+
+
+  ![DFS_100 nodes](images/png/DFS_100.png)
+  
+  [View all images algorithms](images/png)
+
 ### Installation 
 
 ```
@@ -75,8 +95,37 @@ g.create_graphviz('Gilbert_30')
 ```
 There are more examples in [test_graph.py](/test/test_graph.py)
 
+
+- Breadth-first search (BFS)
+```python
+g = models.erdos_rengy(100, 150)
+bfs = g.bfs(0)
+bfs.create_graphviz('BFS_100')
+```
+There are more examples in [test_bfs.py](/test/test_bfs.py)
+
+
+- Depth-first search (DFS)
+```python
+g = models.erdos_rengy(100, 150)
+dfs = g.dfs(0)
+dfs.create_graphviz('DFS_100')
+```
+
+- Depth-first search (DFS) recursive
+```python
+g = models.erdos_rengy(100, 150)
+dfs = g.dfs_r(0)
+dfs.create_graphviz('DFS_R_100')
+```
+There are more examples in [test_dfs.py](/test/test_dfs.py)
+
 ### Test
 Run test
+```
+make tests
+```
+To execute specific test
 ```
 python -m unittest test.test_graph.TestGraph -v
 ```
@@ -86,3 +135,5 @@ python -m unittest test.test_graph.TestGraph -v
 - [Gilbert model](https://en.wikipedia.org/wiki/Random_graph)
 - [Barabási-Albert](https://en.wikipedia.org/wiki/Barab%C3%A1si%E2%80%93Albert_model#Algorithm)
 - [Dorogovtsev-Mendes](https://en.wikipedia.org/wiki/Barab%C3%A1si%E2%80%93Albert_model#Algorithm)
+- [Breadth-first search](https://en.wikipedia.org/wiki/Breadth-first_search)
+- [Depth-first search](https://en.wikipedia.org/wiki/Depth-first_search)
