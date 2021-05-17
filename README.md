@@ -80,7 +80,7 @@ Dijkstra's algorithm  is an algorithm for finding the shortest paths between nod
   ![Dijkstra](images/png/Dijkstra_50_original.png)
 
 
-  ![Dijkstra_calculado nodes](images/png/Dijkstra_50_calculadol_black.png)
+  ![Dijkstra_calculado nodes](images/png/Dijkstra_50_calculado_black.png)
 
 
 
