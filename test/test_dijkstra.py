@@ -49,6 +49,7 @@ class TestDijkstra(unittest.TestCase):
         dot = result.create_graphviz('dijkstra_50_calculado',"WEIGHT",0)
         dot.render('dijkstra_50_calculado',view=True)
 
+    @unittest.skip
     def test_dijkstra_simple_500(self):
         g = models.erdos_rengy(500, 500)
         for e in g.edges.values():

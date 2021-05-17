@@ -1,6 +1,6 @@
 [![Python package](https://github.com/ablarry/pygraph/actions/workflows/python-publish.yml/badge.svg)](https://github.com/ablarry/pygraph/actions/workflows/python-publish.yml)
 # pygraph
-pygraph is a library to work with graphs, searches with DFS and BFS algorithms  and render with [graphviz](https://graphviz.org/) 
+pygraph is a library to work with graphs, searches with DFS, BFS, Dijkstra algorithms and render with [graphviz](https://graphviz.org/) 
 
 ### Random Graphs Models
 Creation of random graphs with models:
@@ -70,6 +70,12 @@ Creation of random graphs with models:
   ![DFS_100 nodes](images/png/DFS_100.png)
   
   [View all images algorithms](images/png)
+
+### Search shortest path  
+
+- ** Dijkstra's algorithm **
+
+Dijkstra's algorithm  is an algorithm for finding the shortest paths between nodes in a graph
 
 ### Installation 
 
