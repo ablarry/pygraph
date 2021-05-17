@@ -1,6 +1,6 @@
 [![Python package](https://github.com/ablarry/pygraph/actions/workflows/python-publish.yml/badge.svg)](https://github.com/ablarry/pygraph/actions/workflows/python-publish.yml)
 # pygraph
-pygraph is a library to work with graphs, searches with DFS and BFS algorithms  and render with [graphviz](https://graphviz.org/) 
+pygraph is a library to work with graphs, searches with DFS, BFS, Dijkstra algorithms and render with [graphviz](https://graphviz.org/) 
 
 ### Random Graphs Models
 Creation of random graphs with models:
@@ -71,7 +71,26 @@ Creation of random graphs with models:
   
   [View all images algorithms](images/png)
 
-### Installation 
+### Search shortest path  
+
+- **Dijkstra's algorithm**
+
+Dijkstra's algorithm  is an algorithm for finding the shortest paths between nodes in a graph
+
+  ![Dijkstra](images/png/Dijkstra_50_original.png)
+
+
+  ![Dijkstra_calculado nodes](images/png/Dijkstra_50_calculado_black.png)
+
+
+
+Another example of Dijkstra's algorithm to find the shortest path from Node 0 to Node 28
+
+  ![Dijkstra_50_nodes](images/pdf/dijkstra.PNG)
+
+  ![Dijkstra_50_calculado nodes](images/pdf/dijkstra_calculado.PNG)
+
+  [View all images algorithms](images/png)
 
 ```
 git clone https://github.com/ablarry/pygraph.git
@@ -121,6 +140,18 @@ dfs = g.dfs_r(0)
 dfs.create_graphviz('DFS_R_100')
 ```
 There are more examples in [test_dfs.py](/test/test_dfs.py)
+
+- Dijkstra
+```python
+# Find shortest path from node 0 to node 38
+g = models.erdos_rengy(100, 150)
+# Assign random weight to each edge
+for e in g.edges.values():
+    e.attr["WEIGHT"] = randint(1,10)
+graph_dijkstra = g.dijkstra(0, 38)
+graph_dijkstra.create_graphviz('dijkstra_calculado',"WEIGHT",0)
+```
+There are more examples in [test_dijkstra.py](/test/test_dijkstra.py)
 
 ### Test
 Run test

@@ -1,8 +1,10 @@
 import collections
+import math
 
 from graphviz import Digraph
 from graphviz import Graph as Graphviz
 from pygraph import edge
+from pygraph import vertex
 
 # Attribute to indicate if is a directed graph
 DIRECTED = "DIRECTED"
@@ -72,12 +74,29 @@ class Graph:
                             self.edges[edge.get_id()] = edge
 
     def get_edges(self):
-        """ edges create edges of the grap
+        """ edges create edges of the graph
         """
         edges = []
         for (key, target) in self.edges.keys():
             edges.append((key, target))
         return edges
+
+    def get_edge(self, id, directed=False):
+        """ 
+        Get edge by specific id
+        param id: Tupla identifier of edge
+        param directed: Filter to find edge directed 
+        """
+        (u,v) = id
+        for (source, target) in self.edges.keys():
+            if directed:
+                if (source, target) == (u,v):
+                    return self.edges[(source, target)]
+            else:
+                if (source, target) == (u,v) or (source, target) == (v,u):
+                    return self.edges[(source, target)]
+        return None 
+
 
     def get_adjacent_vertices_by_vertex(self, id, type=None):
         """
@@ -127,7 +146,7 @@ class Graph:
                     edges.append((source, target))
         return edges
 
-    def create_graphviz(self, file_name):
+    def create_graphviz(self, file_name, attr_label_vertex=None, source=None, attr_label_edge=None):
         dot = Graphviz()
 
         # Review attribute directed of graph
@@ -136,13 +155,29 @@ class Graph:
                 dot = Digraph()
             else:
                 dot = Graphviz()
+        if attr_label_vertex == None:
+            # Map graph to graphviz structure
+            for n in list(self.vertices.keys()):
+                dot.node(str(n), str(n))
+        else:
+            # Map graph to graphviz structure and add vertex attribute
+            for n in list(self.vertices.keys()):
+                label = "Node: "+str(n) 
+                source_label = "Node source: "+ str(source) if source != None else ""
+                label = label + "\n" + source_label
+                label = label + "\n" + attr_label_vertex +" ("+str(self.vertices[n].attributes[attr_label_vertex])+")"
+                dot.node(str(n), label)
 
-        # Map graph to graphviz structure
-        for n in list(self.vertices.keys()):
-            dot.node(str(n), str(n))
-        for e in self.get_edges():
-            (s, t) = e
-            dot.edge(str(s), str(t))
+        if attr_label_edge == None:
+            for e in self.get_edges():
+                (s, t) = e
+                dot.edge(str(s), str(t))
+        else:
+            for e in self.get_edges():
+                (s, t) = e
+                label_edge = self.edges[(s, t)].attr["WEIGHT"]
+                dot.edge(str(s), str(t), label=str(label_edge))
+
         file = open("./images/gv/" + file_name + ".gv", "w")
         file.write(dot.source)
         file.close()
@@ -229,3 +264,83 @@ class Graph:
             for e in self.get_adjacent_vertices_by_vertex(w.id, adjacent_type):
                 self.dfs_rec(g,(w.id,e))
         return g 
+
+    def dijkstra(self, s, t):
+        """
+        dijkstra is an algorithm for finding the shortest paths between nodes in a graph.
+        :param s: node source
+        :param t: node target
+        :return g graph generated with the shortest path from source to target 
+        """
+        l    = []
+        dist = {} 
+        prev = {} 
+        discovered = {}
+        for v in self.get_vertices():
+            dist[v] = float('inf')
+            prev[v] = None
+            discovered[v] = False
+        dist[s] = 0
+        l.append((s, dist[s]))
+        while len(l) != 0:
+            u = min(l, key=lambda x: x[1])
+            l.remove(u)
+            u = u[0]
+            discovered[u] = True
+            if u == t:
+                break
+            for v in self.get_adjacent_vertices_by_vertex(u):
+                if discovered[v] == False:
+                    alt  = dist[u] + self.get_edge((u, v)).attr["WEIGHT"]
+                    if alt < dist[v]:
+                        dist[v] = alt
+                        prev[v] = u
+                        l.append((v, dist[v]))
+        # Create a graph according to visited nodes store in prev array
+        u = t
+        g = Graph(attr={DIRECTED:True})
+        while u != None:
+            g.add_vertex(vertex.Vertex(u, {"WEIGHT": dist[u]}))
+            if prev[u] != None:
+                g.add_vertex(vertex.Vertex(prev[u], {"WEIGHT": dist[prev[u]]}))
+                g.add_edge(edge.Edge(prev[u], u))
+                u = prev[u] 
+            else: 
+                break
+        return g
+
+    def dijkstra_tree(self, s):
+        """
+        dijkstra_tree is an algorithm for finding tree of cost for each node according Dijkstra's algorithm.
+        :param s: node source
+        :param t: node target
+        :return g graph generated with the shortest path from source to target 
+        """
+        l    = []
+        dist = {} 
+        prev = {} 
+        discovered = {}
+        g = Graph(attr={DIRECTED:True})
+        g.add_vertex(vertex.Vertex(s, {"WEIGHT": 0}))
+        for v in self.get_vertices():
+            dist[v] = float('inf')
+            prev[v] = None
+            discovered[v] = False
+        dist[s] = 0
+        l.append((s, dist[s]))
+        while len(l) != 0:
+            u = min(l, key=lambda x: x[1])
+            l.remove(u)
+            u = u[0]
+            discovered[u] = True
+            for v in self.get_adjacent_vertices_by_vertex(u):
+                if discovered[v] == False:
+                    alt  = dist[u] + self.get_edge((u, v)).attr["WEIGHT"]
+                    if alt < dist[v]:
+                        dist[v] = alt
+                        prev[v] = u
+                        l.append((v, dist[v]))
+                        g.add_vertex(vertex.Vertex(v, {"WEIGHT": dist[v]}))
+                        g.add_edge(edge.Edge(u, v, {"WEIGHT": dist[v]}))
+        
+        return g
