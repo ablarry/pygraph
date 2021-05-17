@@ -90,6 +90,8 @@ Another example of Dijkstra's algorithm to find the shortest path from Node 0 to
 
   ![Dijkstra_50_calculado nodes](images/pdf/dijkstra_calculado.PNG)
 
+  [View all images algorithms](images/png)
+
 ```
 git clone https://github.com/ablarry/pygraph.git
 ```
