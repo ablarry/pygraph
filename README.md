@@ -211,7 +211,7 @@ for e in g.edges.values():
 prim_graph = g.Prim()
 prim_graph.create_graphviz('prim_50_calculado', attr_label_edge="WEIGHT", source=0)
 ```
-There are more examples in [test_kruskal.py](/test/test_kruskal.py)
+There are more examples in [test:_kruskal.py](/test/test_kruskal.py)
 
 ### Test
 Run test
@@ -232,4 +232,4 @@ python -m unittest test.test_graph.TestGraph -v
 - [Depth-first search](https://en.wikipedia.org/wiki/Depth-first_search)
 - [Kruskal's algorithm](https://en.wikipedia.org/wiki/Kruskal%27s_algorithm)
 - [Reverse-delete algorithm](https://en.wikipedia.org/wiki/Reverse-delete_algorithm)
-- [https://en.wikipedia.org/wiki/Prim%27s_algorithm](https://en.wikipedia.org/wiki/Prim%27s_algorithm)
+- [Prim's algorithm](https://en.wikipedia.org/wiki/Prim%27s_algorithm)
