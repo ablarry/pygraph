@@ -2,6 +2,7 @@ import math
 import random
 from random import randint
 from random import random
+
 from pygraph import edge
 from pygraph import graph
 from pygraph import vertex
@@ -125,14 +126,17 @@ def geo_simple(n, r, directed=False, auto=False):
 
     # Create n nodes with uniform coordinates 
     for i in range(n):
-        g.add_vertex(vertex.Vertex(i, {COORDINATE_X: random(), COORDINATE_Y: random()}))
+        g.add_vertex(
+            vertex.Vertex(i, {COORDINATE_X: random(), COORDINATE_Y: random()}))
 
     # Create edge between two vertex if there is a distance <= r
     for i in range(n):
         for j in range(n):
             # Calculate distance between two points
-            p1 = (g.get_vertex(i).attributes[COORDINATE_X], g.get_vertex(i).attributes[COORDINATE_Y])
-            p2 = (g.get_vertex(j).attributes[COORDINATE_X], g.get_vertex(j).attributes[COORDINATE_Y])
+            p1 = (g.get_vertex(i).attributes[COORDINATE_X],
+                  g.get_vertex(i).attributes[COORDINATE_Y])
+            p2 = (g.get_vertex(j).attributes[COORDINATE_X],
+                  g.get_vertex(j).attributes[COORDINATE_Y])
             d = calculate_distance(p1, p2)
             if d <= r:
                 g.add_edge(edge.Edge(i, j), directed, auto)
@@ -163,7 +167,8 @@ def barabasi(n, d, directed=False, auto=False):
         g.add_vertex(vertex.Vertex(i))
     for i in range(d):
         for j in range(d):
-            if len(g.get_edges_by_vertex(i)) < d and len(g.get_edges_by_vertex(j)) < d:
+            if len(g.get_edges_by_vertex(i)) < d and len(
+                    g.get_edges_by_vertex(j)) < d:
                 g.add_edge(edge.Edge(i, j), directed, auto)
 
     for i in range(d, n):
@@ -172,7 +177,8 @@ def barabasi(n, d, directed=False, auto=False):
             # The probability p that the new node i is connected to node j
             # is the grade of vertex j divided by the number of edges of graph
             p = len(g.get_edges_by_vertex(j)) / len(g.get_edges())
-            if len(g.get_edges_by_vertex(i)) < d and len(g.get_edges_by_vertex(j)) < d and p >= random():
+            if len(g.get_edges_by_vertex(i)) < d and len(
+                    g.get_edges_by_vertex(j)) < d and p >= random():
                 g.add_edge(edge.Edge(i, j), directed, auto)
     return g
 
