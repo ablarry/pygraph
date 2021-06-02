@@ -92,9 +92,33 @@ Another example of Dijkstra's algorithm to find the shortest path from Node 0 to
 
   [View all images algorithms](images/png)
 
-```
-git clone https://github.com/ablarry/pygraph.git
-```
+### Algorithms of minimum spanning forest 
+
+- **Kruskal's algorithm**
+
+Kruskal's algorithm finds a minimum spanning forest of an undirected edge-weighted graph
+
+  ![Original Graph](images/png/KruskalD_50_Black_original.png)
+
+  ![Kruskal](images/png/KruskalD_50_Black_calculado.png)
+
+- **Inverse Kruskal's algorithm**
+
+Inverse Kruskal's algorithm (also known as reverse-delete algorithm) is an algorithm in graph theory used to obtain a minimum spanning tree from a given connected, edge-weighted graph.
+If the graph is disconnected, this algorithm will find a minimum spanning tree for each disconnected part of the graph. The set of these minimum spanning trees is called a minimum spanning forest, which contains every vertex in the graph.
+
+  ![Original Graph](images/png/Kruskal_50_Black_original.png)
+
+  ![Kruskal](images/png/Kruskal_50_Black_calculado.png)
+
+- **Prim's algorithm**
+
+Prim's (also known as Jarník's) algorithm is a greedy algorithm that finds a minimum spanning tree for a weighted undirected graph. This means it finds a subset of the edges that forms a tree that includes every vertex, where the total weight of all the edges in the tree is minimized.
+
+  ![Original Graph](images/png/Prim_50_Black_original.png)
+
+  ![Kruskal](images/png/Prim_50_Black_calculadol.png)
+
 ### Quickstart
 ```
 Available commands:
@@ -153,6 +177,42 @@ graph_dijkstra.create_graphviz('dijkstra_calculado',"WEIGHT",0)
 ```
 There are more examples in [test_dijkstra.py](/test/test_dijkstra.py)
 
+- Kruskal
+```python
+# Find minimum spanning forest
+g = models.erdos_rengy(50, 100)
+# Assign random weight to each edge
+for e in g.edges.values():
+    e.attr["WEIGHT"] = randint(1,10)
+kruskal_graph = g.KruskalD()
+kruskal_graph.create_graphviz('KruskalD_50_calculado', attr_label_edge="WEIGHT", source=0)
+```
+There are more examples in [test_kruskal.py](/test/test_kruskal.py)
+
+- Inverse Kruskal
+```python
+# Find minimum spanning forest
+g = models.erdos_rengy(50, 100)
+# Assign random weight to each edge
+for e in g.edges.values():
+    e.attr["WEIGHT"] = randint(1,10)
+kruskal_graph = g.Kruskal()
+kruskal_graph.create_graphviz('inverse_Kruskal_50_calculado', attr_label_edge="WEIGHT", source=0)
+```
+There are more examples in [test_kruskal.py](/test/test_kruskal.py)
+
+- Prim
+```python
+# Find minimum spanning forest
+g = models.erdos_rengy(50, 100)
+# Assign random weight to each edge
+for e in g.edges.values():
+    e.attr["WEIGHT"] = randint(1,10)
+prim_graph = g.Prim()
+prim_graph.create_graphviz('prim_50_calculado', attr_label_edge="WEIGHT", source=0)
+```
+There are more examples in [test_kruskal.py](/test/test_kruskal.py)
+
 ### Test
 Run test
 ```
@@ -170,3 +230,6 @@ python -m unittest test.test_graph.TestGraph -v
 - [Dorogovtsev-Mendes](https://en.wikipedia.org/wiki/Barab%C3%A1si%E2%80%93Albert_model#Algorithm)
 - [Breadth-first search](https://en.wikipedia.org/wiki/Breadth-first_search)
 - [Depth-first search](https://en.wikipedia.org/wiki/Depth-first_search)
+- [Kruskal's algorithm](https://en.wikipedia.org/wiki/Kruskal%27s_algorithm)
+- [Reverse-delete algorithm](https://en.wikipedia.org/wiki/Reverse-delete_algorithm)
+- [https://en.wikipedia.org/wiki/Prim%27s_algorithm](https://en.wikipedia.org/wiki/Prim%27s_algorithm)

@@ -1,11 +1,10 @@
 import unittest
-from graphviz import Graph
 
-import pygraph
 from pygraph import edge
 from pygraph import graph
 from pygraph import models
 from pygraph import vertex
+
 
 class TestGraph(unittest.TestCase):
 
@@ -62,9 +61,9 @@ class TestGraph(unittest.TestCase):
         self.assertEqual(2, len(g.get_edges_by_vertex(1)))
         e = edge.Edge(2, 1)
         g.add_edge(e, True)
-        self.assertEqual(3, len(g.get_edges_by_vertex(1,0)))
-        self.assertEqual(2, len(g.get_edges_by_vertex(1,1)))
-        self.assertEqual(1, len(g.get_edges_by_vertex(1,2)))
+        self.assertEqual(3, len(g.get_edges_by_vertex(1, 0)))
+        self.assertEqual(2, len(g.get_edges_by_vertex(1, 1)))
+        self.assertEqual(1, len(g.get_edges_by_vertex(1, 2)))
 
     # Tests Mesh graph
     def test_mesh(self):
@@ -165,13 +164,15 @@ class TestGraph(unittest.TestCase):
         g = models.gilbert(500, 0.3)
         dot = g.create_graphviz('Gilbert_500')
 
-    # Tests Geo-Simplr graph
+    # Tests Geo-Simple graph
     def test_calculate_distance(self):
         v1 = vertex.Vertex(1, {models.COORDINATE_X: 3, models.COORDINATE_Y: 2})
         v2 = vertex.Vertex(2, {models.COORDINATE_X: 9, models.COORDINATE_Y: 7})
-        p1 = (v1.attributes[models.COORDINATE_X], v1.attributes[models.COORDINATE_Y])
-        p2 = (v2.attributes[models.COORDINATE_X], v2.attributes[models.COORDINATE_Y])
-        d = models.calculate_distance(p1, p2)
+        p1 = (
+        v1.attributes[models.COORDINATE_X], v1.attributes[models.COORDINATE_Y])
+        p2 = (
+        v2.attributes[models.COORDINATE_X], v2.attributes[models.COORDINATE_Y])
+        models.calculate_distance(p1, p2)
 
     def test_geo_simple_validation(self):
         self.assertRaises(ValueError, models.geo_simple, 0, 0.1)

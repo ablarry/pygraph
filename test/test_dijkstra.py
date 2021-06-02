@@ -1,11 +1,6 @@
 import unittest
-
-from random import seed
 from random import randint
 
-import pygraph
-
-from graphviz import Graph
 from pygraph import edge
 from pygraph import graph
 from pygraph import models
@@ -30,32 +25,34 @@ class TestDijkstra(unittest.TestCase):
         g.add_edge(e)
         e = edge.Edge(3, 4, {"WEIGHT": 3})
         g.add_edge(e)
-        dot = g.create_graphviz('dijkstra_original_3', attr_label_edge = "WEIGHT")
-        dot.render('dijkstra_3_original',view=True)
+        dot = g.create_graphviz('dijkstra_original_3',
+                                attr_label_edge="WEIGHT")
+        dot.render('dijkstra_3_original', view=True)
         result = g.dijkstra(1, 5)
         print(result)
-        dot = result.create_graphviz('dijkstra_calculado_3',"WEIGHT",1)
-        #dot.render('dijkstra_3_calculado',view=True)
- 
+        dot = result.create_graphviz('dijkstra_calculado_3', "WEIGHT", 1)
+        # dot.render('dijkstra_3_calculado',view=True)
 
     @unittest.skip
     def test_dijkstra_simple_50(self):
         g = models.erdos_rengy(50, 50)
         for e in g.edges.values():
-            e.attr["WEIGHT"] = randint(1,10) 
-        dot = g.create_graphviz('dijkstra_50_original', attr_label_edge="WEIGHT")
-        dot.render('dijkstra_50',view=True)
+            e.attr["WEIGHT"] = randint(1, 10)
+        dot = g.create_graphviz('dijkstra_50_original',
+                                attr_label_edge="WEIGHT")
+        dot.render('dijkstra_50', view=True)
         result = g.dijkstra(0, 38)
-        dot = result.create_graphviz('dijkstra_50_calculado',"WEIGHT",0)
-        dot.render('dijkstra_50_calculado',view=True)
+        dot = result.create_graphviz('dijkstra_50_calculado', "WEIGHT", 0)
+        dot.render('dijkstra_50_calculado', view=True)
 
     @unittest.skip
     def test_dijkstra_simple_500(self):
         g = models.erdos_rengy(500, 500)
         for e in g.edges.values():
-            e.attr["WEIGHT"] = randint(1,10) 
-        dot = g.create_graphviz('dijkstra_500_original', attr_label_edge="WEIGHT")
-        dot.render('dijkstra_500',view=True)
+            e.attr["WEIGHT"] = randint(1, 10)
+        dot = g.create_graphviz('dijkstra_500_original',
+                                attr_label_edge="WEIGHT")
+        dot.render('dijkstra_500', view=True)
         result = g.dijkstra(0, 440)
-        dot = result.create_graphviz('dijkstra_500_calculado',"WEIGHT",0)
-        dot.render('dijkstra_500_calculado',view=True)
+        dot = result.create_graphviz('dijkstra_500_calculado', "WEIGHT", 0)
+        dot.render('dijkstra_500_calculado', view=True)
