@@ -1,6 +1,11 @@
 [![Python package](https://github.com/ablarry/pygraph/actions/workflows/python-publish.yml/badge.svg)](https://github.com/ablarry/pygraph/actions/workflows/python-publish.yml)
 # pygraph
-pygraph is a library to work with graphs, searches with DFS, BFS, Dijkstra algorithms and render with [graphviz](https://graphviz.org/) 
+pygraph is a library to work with graphs:
+- Searches: DFS, BFS and Dijkstra algorithms 
+  
+- Minimum Spanning Tree: Kruskal, Inverse Kruskal and Prism algorithms 
+  
+- Render with [graphviz](https://graphviz.org/) 
 
 ### Random Graphs Models
 Creation of random graphs with models:
